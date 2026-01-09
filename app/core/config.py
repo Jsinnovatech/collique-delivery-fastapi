@@ -19,10 +19,10 @@ class Settings(BaseSettings):
     DEBUG: bool = True
 
     # Database
-    DATABASE_URL: str
+    DATABASE_URL: str = "postgresql://postgres:password@localhost/collique_delivery"
 
     # Security
-    SECRET_KEY: str
+    SECRET_KEY: str = "collique_delivery_jwt_secret_2025_fallback_key"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     ALGORITHM: str = "HS256"
 
