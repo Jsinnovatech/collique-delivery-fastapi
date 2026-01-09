@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://collique_user:collique_password@db:5432/collique_delivery_fastapi
+      - SECRET_KEY=your-super-secret-key-here-change-this-in-production
+      - DEBUG=true
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./uploads:/app/uploads
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=collique_delivery_fastapi
+      - POSTGRES_USER=collique_user
+      - POSTGRES_PASSWORD=collique_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

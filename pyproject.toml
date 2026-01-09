@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "collique-delivery-fastapi"
+version = "1.0.0"
+description = "API moderna para Collique Delivery con FastAPI"
+authors = ["JSALASINNOVATECH <admin@colliquedelivery.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+sqlmodel = "^0.0.16"
+asyncpg = "^0.29.0"
+alembic = "^1.13.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.6"
+pydantic-settings = "^2.1.0"
+httpx = "^0.26.0"
+python-slugify = "^8.0.1"
+redis = "^5.0.1"
+celery = "^5.3.4"
+pillow = "^10.2.0"
+aiofiles = "^23.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.23.0"
+black = "^24.0.0"
+isort = "^5.13.0"
+flake8 = "^7.0.0"
+mypy = "^1.8.0"
+pre-commit = "^3.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
